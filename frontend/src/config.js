@@ -1,0 +1,40 @@
+require('dotenv').config()
+
+module.exports = {
+  baseUrl:process.env.REACT_APP_GET,
+  routes: [
+    {
+      url:'/',
+      name:'Home'
+    },
+    {
+      url:'/new',
+      name:'New'
+    }
+  ],
+  list:{
+    tableHead:[
+      {
+        name:'id'
+      },
+      {
+        name:'title'
+      },
+      {
+        name:'body'
+      },
+      {
+        name:'image'
+      },
+      {
+        name:'tags'
+      },
+      {
+        name:'keywords'
+      },
+      {
+        name:'actions'
+      }
+    ]
+  }
+}
