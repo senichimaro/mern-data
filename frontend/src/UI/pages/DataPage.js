@@ -20,7 +20,7 @@ const DataPage = () => {
   }
 
   useEffect(() => {
-    if ( history.location.state ) setIsData(history.location.state)
+    if ( history.location.state ) setIsData(history.location.state.data)
     else _findTitle( title )
   },[])
 

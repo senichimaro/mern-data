@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { postData } from '../../services/request'
+import { postData, editData } from '../../services/request'
 
 import Form from '../components/Form'
 import Modal from '../components/Modal'
@@ -14,16 +14,21 @@ const FormPage = () => {
   const [ modalData, setModalData ] = useState([])
 
   const handleSubmit = async formData => {
-    const response = await postData( formData )
+    const { _id } = formData;
+    let response
+    if ( _id ) response = await editData( formData )
+    else response = await postData( formData )
+
     setModalData( response.data )
-    setIsModalOpen( response.data.success )
+    if ( !response.data.success ) setIsModalOpen( !response.data.success )
+    else setIsModalOpen( response.data.success )
   }
 
 
   /** # Edit Form
   */
   const { id } = useParams()
-  const [ isDataID, setIsDataID ] = useState(id)
+  const [ isDataID, setIsDataID ] = useState( id )
 
 
 

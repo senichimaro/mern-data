@@ -18,7 +18,6 @@ export async function getData(){
 export async function postData( userData ){
 
   try {
-    // console.log(`userData: ${userData.title}`);
     const formData = new FormData()
     formData.append('title', userData.title)
     formData.append('body', userData.body)
@@ -37,6 +36,33 @@ export async function postData( userData ){
   }
   catch(e) {
     console.error(`ERROR at request.js postData: ${e.message}`);
+  }
+
+}
+
+
+export async function editData( userData ){
+
+  try {
+    const formData = new FormData()
+    formData.append('id', userData._id)
+    formData.append('title', userData.title)
+    formData.append('body', userData.body)
+    formData.append('image', userData.image)
+    formData.append('tags', userData.tags)
+    formData.append('keywords', userData.keywords)
+
+    const response = await axios({
+      method:'put',
+      url:`${baseUrl}/data/editdata`,
+      data:formData
+    })
+
+    return response
+
+  }
+  catch(e) {
+    console.error(`ERROR at request.js editData: ${e.message}`);
   }
 
 }

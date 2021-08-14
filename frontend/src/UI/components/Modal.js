@@ -48,8 +48,7 @@ const Modal = ({ modalData, isModalOpen, setIsModalOpen }) => {
 }
 
 
-function ErrorComponent({ name, message }){
-  console.log("ErrorComponent");
+function ErrorComponent({ modalData }){
   return (
     <div className="shadow-sm rounded w-50">
 
@@ -57,16 +56,16 @@ function ErrorComponent({ name, message }){
 
         <h5 className="card-title">
           {
-            name
-              ? name
+            modalData
+              ? modalData.name
               : 'Error Unknown'
           }
         </h5>
 
         <p className="card-text">
           {
-            message
-            ? message
+            modalData
+            ? modalData.message
             : 'Message Unknown'
           }
         </p>
@@ -78,9 +77,7 @@ function ErrorComponent({ name, message }){
 }
 
 
-// function SuccessComponent({ imgUrl, title, body, tags, keywords }){
 function SuccessComponent({ modalData }){
-  console.log("SuccessCom", modalData);
   return (
     <div className="shadow-sm rounded w-50">
 

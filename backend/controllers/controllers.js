@@ -1,4 +1,6 @@
-const resJson = require('./utils')
+const {
+  resJson
+} = require('./utils')
 const axios = require('axios')
 const ModelSchema = require('../model/modelSchema')
 
@@ -17,6 +19,8 @@ async function getData(req,res){
 async function newData(req,res){
 
   try {
+
+    const { id } = req.body
 
     const {
       title,

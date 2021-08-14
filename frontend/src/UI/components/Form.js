@@ -27,7 +27,7 @@ const Form = ({ handleSubmit, postID }) => {
 
   /** # Edit Form
   */
-  const [ isID, setIsID ] = useState(postID)
+  const [ isID, setIsID ] = useState( postID )
 
   useEffect(() => {
     async function loadData( dataID ){
