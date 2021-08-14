@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { list } from '../../config'
 import { deleteData } from '../../services/request'
 
-const List = ({ listData }) => {
+const List = ({ listData, loadData, handleRead }) => {
 
   return (
     <div className="table-responsive">
@@ -26,6 +26,8 @@ const List = ({ listData }) => {
                 imgUrl={imgUrl}
                 tags={tags}
                 keywords={keywords}
+                loadData={loadData}
+                handleRead={handleRead}
               />
 
             ))
@@ -43,14 +45,21 @@ function TableHead({ name }){
   return <th scope="col">{name}</th>
 }
 
-function TableRow({ _id, title, body, imgUrl, tags, keywords }){
+function TableRow({ _id, title, body, imgUrl, tags, keywords, loadData, handleRead }){
 
   const _handleDelete = async event => {
     event.preventDefault()
     const itemEl = event.target
     const itemID = itemEl.getAttribute('name')
     const response = await deleteData( itemID )
-    console.log("response",response);
+    loadData()
+  }
+
+  const _handleRead = event => {
+    event.preventDefault()
+    const itemEl = event.target
+    const itemID = itemEl.getAttribute('name')
+    handleRead( itemID )
   }
 
   return (
@@ -68,7 +77,7 @@ function TableRow({ _id, title, body, imgUrl, tags, keywords }){
       <td>{tags.join(", ")}</td>
       <td>{keywords.join(", ")}</td>
       <td>
-        <Link onClick={_handleDelete} to={`${title.replace(/\s/g,'-')}/${_id}`} >
+        <Link onClick={_handleRead} to={`${title.replace(/\s/g,'-')}/${_id}`} >
           <i className="bi bi-file-earmark" name={ _id }></i>
         </Link>
 

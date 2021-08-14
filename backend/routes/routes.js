@@ -4,6 +4,7 @@ const {
   getData,
   newData,
   findData,
+  findTitle,
   editData,
   deleteData
 } = require('../controllers/controllers')
@@ -14,6 +15,8 @@ endpoints.get('/', getData)
 endpoints.post('/data/newdata', upload.single('image'), newData)
 
 endpoints.post('/data/finddata', findData)
+
+endpoints.post('/data/findTitle', findTitle)
 
 endpoints.put('/data/editdata', upload.single('image'), editData)
 

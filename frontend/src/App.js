@@ -34,7 +34,7 @@ function App() {
           <FormPage />
         </Route>
 
-        <Route path='/:title/:id'>
+        <Route path='/:title/'>
           <DataPage />
         </Route>
 

@@ -18,9 +18,6 @@ async function newData(req,res){
 
   try {
 
-    // if( req.body.id ) console.log("req.body",req.body.id);
-    // else console.log("req.body No ID");
-
     const {
       title,
       body,
@@ -56,7 +53,6 @@ async function newData(req,res){
 async function findData(req,res){
 
   try {
-    console.log("req.body",req.body);
     const { id } = req.body
 
     await ModelSchema.findById(
@@ -66,6 +62,22 @@ async function findData(req,res){
   }
   catch(e){
     console.error(`ERROR at controllers.js findData: ${e.message}`);
+  }
+
+}
+
+async function findTitle(req,res){
+
+  try {
+    const { title } = req.body
+
+    await ModelSchema.findOne(
+      {title:title},
+      (err,data) => resJson(res,err,data)
+    )
+  }
+  catch(e){
+    console.error(`ERROR at controllers.js findTitle: ${e.message}`);
   }
 
 }
@@ -132,6 +144,7 @@ module.exports = {
   getData,
   newData,
   findData,
+  findTitle,
   editData,
   deleteData
 }

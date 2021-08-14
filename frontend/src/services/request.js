@@ -60,6 +60,24 @@ export async function findData( dataID ){
 }
 
 
+export async function findTitle( dataTitle ){
+
+  try {
+    const response = await axios({
+      method:'post',
+      url:`${baseUrl}/data/findtitle`,
+      data:{title:dataTitle}
+    })
+
+    return response
+  }
+  catch(e) {
+    console.error(`ERROR at request.js findData: ${e.message}`);
+  }
+
+}
+
+
 export async function deleteData( dataID ){
 
   try {
